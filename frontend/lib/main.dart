@@ -122,7 +122,8 @@ class _MyAppState extends State<MyApp> {
 
   var responses;
   void sendDataToChannel(String text) {
-    print("ready to send ");
+
+    
     Map<String, String> mapOfDataEntered = {
       "Name": widget.currentName,
       "Message": text,
@@ -238,18 +239,16 @@ class _MyAppState extends State<MyApp> {
       ),
       body: FutureBuilder(
           future:
-              responses, //! responses compulsory cha cause esle add ni garirako cha the currentName to the list in the backend an return ing first  element which is irrelevant but the thiing will only be returned after the adding of element in the liist
-          builder: (context, snapshots) {
+              responses, //! it is adding currentName to the list in the backend an return ing first  element which is irrelevant but the thiing will only be returned after the adding of elementuilder: (context, snapshots) {
             if (snapshots.connectionState == ConnectionState.done) {
-              print(snapshots.data);
-              print("🔥🔥🔥🔥");
+            
               currentTurn = snapshots.data.toString();
               return StreamBuilder(
                 stream: messageStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     listOfMessage.add(json.decode(snapshot.data.toString()));
-                    print(listOfMessage);
+                 
 
                     return SingleChildScrollView(
                       child: Column(
@@ -277,11 +276,9 @@ class _MyAppState extends State<MyApp> {
                               //! this controls the nullness of the ok button when answer is right .
                               stream: boolStreamController.stream,
                               builder: (context, snapshot) {
-                                print(snapshot.data);
-                                print("|||||||||||||||||||||||");
+                              
                                 if (snapshot.hasData) {
-                                  print(snapshot.data);
-                                  print("🔥🔥🔥🔥🔥");
+                              
                                   return Row(
                                     children: [
                                       Container(
